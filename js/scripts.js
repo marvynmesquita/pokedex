@@ -62,8 +62,7 @@ const renderPokemon = async (pokemon) => {
         }
     } else {
         if (searchPk == 772){
-            pk = data.name.split('-')
-            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name + '.gif';
         } else {
             pk = data.name.split('-')
             pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
