@@ -21,7 +21,6 @@ const catchPokemon = async (id) => {
         } else {
             pokeID.innerHTML = '???'
             pokeName.innerHTML = 'MissingNo.'
-            pokeSprite.classList.remove('loading')
             pokeSprite.src = '../img/missingno.png'
             pkTypes.innerHTML = '<div class="error">Error</div>'
             pkcry.setAttribute('src', './media/miss.mp3')
@@ -36,10 +35,7 @@ const catchPokemon = async (id) => {
 const renderPokemon = async (pokemon) => {
     pokeID.innerHTML = ''
     pokeName.innerHTML = 'Loading...'
-    pokeSprite.src = '../img/pokeload.png'
-    pokeSprite.classList.add('loading')
     const data = await catchPokemon(pokemon);
-    pokeSprite.classList.remove('loading')
     searchPk = data.id
     if (data.name.split('-')[0] != 'tapu') {
         pk = data.name.split('-')
