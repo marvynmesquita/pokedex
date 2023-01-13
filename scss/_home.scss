@@ -128,7 +128,7 @@ header {
         }
     }
     .sprite {
-        height: 30vh;
+        height: 40vh;
         margin: 10vh;
     }
     .types {
@@ -144,13 +144,13 @@ header {
             color: white;
             margin: 1vh;
             height: 5vh;
-            width: 8vw;
+            width: 10vw;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 3vh;
             @media (max-width: 600px) {
-                width: 28vw;
+                width: 30vw;
             }
         }
         .bug {

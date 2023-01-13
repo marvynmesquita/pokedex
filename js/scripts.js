@@ -54,9 +54,13 @@ const renderPokemon = async (pokemon) => {
     } else {
         pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div>'
     }
-    pkcry.setAttribute('src', pokecry(searchPk))
+    if (searchPk == 25) {
+        pkcry.setAttribute('src','./media/pikachu.mp3');
+    } else {
+        pkcry.setAttribute('src', pokecry(searchPk))
+    }
     pkcry.load()
-    pkcry.volume = 0.4;
+    pkcry.volume = 0.6;
     pkcry.loop = false
     pkcry.play()
     input.value = ''
@@ -66,7 +70,7 @@ const renderPokemon = async (pokemon) => {
 const pokecry = (id) => {
     if (id <= 649) {
         cry = 'https://pokemoncries.com/cries-old/' + id + '.mp3';
-    }
+    } 
     else {
         cry = 'https://pokemoncries.com/cries/' + id + '.mp3';
     }
