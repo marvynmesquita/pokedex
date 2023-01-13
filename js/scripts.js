@@ -40,14 +40,34 @@ const renderPokemon = async (pokemon) => {
     pokeSprite.classList.add('loading')
     const data = await catchPokemon(pokemon);
     pokeSprite.classList.remove('loading')
-    pokeName.innerHTML = capitalizeFirstLetter(data.name);
     searchPk = data.id
-    pokeID.innerHTML = (data.id).toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})
-    if (pokemon <= 809) {
-        pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name +'.gif';
+    if (data.name.split('-')[0] != 'tapu') {
+        pk = data.name.split('-')
+        pokeName.innerHTML = capitalizeFirstLetter(pk[0]);
+    } else {
+        if (searchPk == 772){
+            pokeName.innerHTML = capitalizeFirstLetter(data.name);
+        } else {
+            pokeName.innerHTML = capitalizeFirstLetter(data.name);
+        }
     }
-    else {
-        pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
+    pokeID.innerHTML = (data.id).toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})
+    if (data.name.split('-')[0] != 'tapu') {
+        pk = data.name.split('-')
+        if (pokemon <= 809) {
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] +'.gif';
+        }
+        else {
+            pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
+        }
+    } else {
+        if (searchPk == 772){
+            pk = data.name.split('-')
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
+        } else {
+            pk = data.name.split('-')
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
+        }
     }
     if (data.types['1']){
         pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div><div class="' + data.types[1].type.name + '">' + capitalizeFirstLetter(data.types[1].type.name) + '</div>'
