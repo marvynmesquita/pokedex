@@ -61,12 +61,8 @@ const renderPokemon = async (pokemon) => {
             pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
         }
     } else {
-        if (searchPk == 772){
-            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name + '.gif';
-        } else {
-            pk = data.name.split('-')
-            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
-        }
+        pk = data.name.split('-')
+        pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
     }
     if (data.types['1']){
         pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div><div class="' + data.types[1].type.name + '">' + capitalizeFirstLetter(data.types[1].type.name) + '</div>'
