@@ -131,6 +131,84 @@ header {
         margin: 10vh;
         margin-top: 20vh ;
     }
+    .types {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        width: 30vw;
+        height: 7vh;
+        margin-top: -5vh;
+        div {
+            font-weight: 400;
+            border: 2px solid white;
+            color: white;
+            margin: 1vh;
+            height: 5vh;
+            width: 10vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3vh;
+        }
+        .bug {
+            background-color: #a7ba1d;
+        }
+        .dark {
+            background-color: #533d31;
+        }
+        .dragon {
+            background-color: #755fe0;
+        }
+        .electric {
+            background-color: #fbbb17;
+        }
+        .fairy {
+            background-color: #f3b6f3;
+        }
+        .fighting {
+            background-color: #80331a;
+        }
+        .fire {
+            background-color: #e93b0c;
+        }
+        .flying {
+            background-color: #97a7f5;
+        }
+        .ghost {
+            background-color: #5d5da9;
+        }
+        .grass {
+            background-color: #73c337;
+        }
+        .ground {
+            background-color: #cdad53;
+        }
+        .ice {
+            background-color: #aae9fe;
+        }
+        .normal {
+            background-color: #c5c0b5;
+        }
+        .poison {
+            background-color: #944893;
+        }
+        .psychic {
+            background-color: #b73d67;
+        }
+        .rock {
+            background-color: #b9a157;
+        }
+        .steel {
+            background-color: #bbbbc8;
+        }
+        .water {
+            background-color: #2f95f4;
+        }
+        .error {
+            background-color: red;
+        }
+    }
     .loading {
         animation: pokeload 1.5s infinite;
     }

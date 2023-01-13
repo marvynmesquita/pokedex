@@ -5,6 +5,7 @@ const form = document.querySelector('.form');
 const input = document.querySelector('.inputSearch');
 const previous = document.querySelector('.prev');
 const next = document.querySelector('.next');
+let pkTypes = document.querySelector('.types');
 let pkcry = document.querySelector('.pkcry');
 let searchPk = 1
 
@@ -22,8 +23,10 @@ const catchPokemon = async (id) => {
             pokeName.innerHTML = 'MissingNo.'
             pokeSprite.classList.remove('loading')
             pokeSprite.src = '../img/missingno.png'
+            pkTypes.innerHTML = '<div class="error">Error</div>'
             pkcry.setAttribute('src', './media/miss.mp3')
             pkcry.load()
+            pkcry.volume = 0.4;
             pkcry.loop = false
             pkcry.play()
             input.value = ''
@@ -41,8 +44,14 @@ const renderPokemon = async (pokemon) => {
     searchPk = data.id
     pokeID.innerHTML = (data.id).toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})
     pokeSprite.src = data['sprites']['other']['official-artwork']['front_default']
+    if (data.types['1']){
+        pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div><div class="' + data.types[1].type.name + '">' + capitalizeFirstLetter(data.types[1].type.name) + '</div>'
+    } else {
+        pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div>'
+    }
     pkcry.setAttribute('src', pokecry(searchPk))
     pkcry.load()
+    pkcry.volume = 0.4;
     pkcry.loop = false
     pkcry.play()
     input.value = ''
@@ -79,6 +88,26 @@ next.addEventListener('click', () => {
     }
     else if (searchPk = 1008) {
         renderPokemon('1')
+    }
+})
+
+document.addEventListener('keydown', (e) => {
+    var code = e.keyCode
+
+    if (code === 39) {
+        if (searchPk < 1008) {
+            renderPokemon(searchPk + 1)
+        }
+        else if (searchPk = 1008) {
+            renderPokemon('1')
+        }
+    } else if (code === 37) {
+        if (searchPk >= 2) {
+            renderPokemon(searchPk - 1)
+        }
+        else if (searchPk <= 1) {
+            renderPokemon('1008')
+        }
     }
 })
 
