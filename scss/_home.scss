@@ -16,6 +16,7 @@ header {
 .s-main {
     width: 100%;
     height: 90vh;
+    margin-top: 10vh;
     top: 10vh;
     left: 0;
     right: 0;
@@ -127,9 +128,8 @@ header {
         }
     }
     .sprite {
-        height: 50vh;
+        height: 30vh;
         margin: 10vh;
-        margin-top: 20vh ;
     }
     .types {
         display: flex;
@@ -138,18 +138,20 @@ header {
         flex-direction: row;
         width: 30vw;
         height: 7vh;
-        margin-top: -5vh;
         div {
             font-weight: 400;
             border: 2px solid white;
             color: white;
             margin: 1vh;
             height: 5vh;
-            width: 10vw;
+            width: 8vw;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 3vh;
+            @media (max-width: 600px) {
+                width: 28vw;
+            }
         }
         .bug {
             background-color: #a7ba1d;
@@ -186,6 +188,8 @@ header {
         }
         .ice {
             background-color: #aae9fe;
+            border: 2px solid white;
+            color: rgb(42, 42, 42);
         }
         .normal {
             background-color: #c5c0b5;

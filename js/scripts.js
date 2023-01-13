@@ -43,7 +43,12 @@ const renderPokemon = async (pokemon) => {
     pokeName.innerHTML = capitalizeFirstLetter(data.name);
     searchPk = data.id
     pokeID.innerHTML = (data.id).toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})
-    pokeSprite.src = data['sprites']['other']['official-artwork']['front_default']
+    if (pokemon <= 809) {
+        pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name +'.gif';
+    }
+    else {
+        pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
+    }
     if (data.types['1']){
         pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div><div class="' + data.types[1].type.name + '">' + capitalizeFirstLetter(data.types[1].type.name) + '</div>'
     } else {
