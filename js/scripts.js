@@ -41,8 +41,8 @@ const renderPokemon = async (pokemon) => {
         pk = data.name.split('-')
         pokeName.innerHTML = capitalizeFirstLetter(pk[0]);
     } else {
-        if (searchPk == 772){
-            pokeName.innerHTML = capitalizeFirstLetter(data.name);
+        if (data.name === 'type-null'){
+            pokeName.innerHTML = capitalizeFirstLetter(data.name.split('-')[0]) + '-' + data.name.split('-')[1]
         } else {
             pokeName.innerHTML = capitalizeFirstLetter(data.name);
         }
@@ -50,11 +50,15 @@ const renderPokemon = async (pokemon) => {
     pokeID.innerHTML = (data.id).toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})
     if (data.name.split('-')[0] != 'tapu') {
         pk = data.name.split('-')
-        if (pokemon <= 809) {
-            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] +'.gif';
-        }
-        else {
-            pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
+        if (data.name === 'type-null') {
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name +'.gif'
+        } else {
+            if (pokemon <= 809) {
+                pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] +'.gif';
+            }
+            else {
+                pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
+            }
         }
     } else {
         pk = data.name.split('-')
