@@ -25,7 +25,7 @@ const catchPokemon = async (id) => {
             pkTypes.innerHTML = '<div class="error">Error</div>'
             pkcry.setAttribute('src', './media/miss.mp3')
             pkcry.load()
-            pkcry.volume = 0.4;
+            pkcry.volume = 0.3;
             pkcry.loop = false
             pkcry.play()
             input.value = ''
@@ -37,32 +37,26 @@ const renderPokemon = async (pokemon) => {
     pokeName.innerHTML = 'Loading...'
     const data = await catchPokemon(pokemon);
     searchPk = data.id
-    if (data.name.split('-')[0] != 'tapu') {
+    if (data.name.split('-')[0] != 'tapu' && data.name != 'type-null' && data.name != 'jangmo-o' && data.name != 'hakamo-o' && data.name != 'kommo-o') {
         pk = data.name.split('-')
         pokeName.innerHTML = capitalizeFirstLetter(pk[0]);
     } else {
-        if (data.name === 'type-null'){
-            pokeName.innerHTML = capitalizeFirstLetter(data.name.split('-')[0]) + '-' + data.name.split('-')[1]
-        } else {
-            pokeName.innerHTML = capitalizeFirstLetter(data.name);
-        }
+        pokeName.innerHTML = capitalizeFirstLetter(data.name.split('-')[0]) + '-' + data.name.split('-')[1]
     }
     pokeID.innerHTML = (data.id).toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})
-    if (data.name.split('-')[0] != 'tapu') {
-        pk = data.name.split('-')
-        if (data.name === 'type-null') {
-            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name +'.gif'
+    if (data.name.split('-')[0] != 'tapu' && data.name != 'type-null' && data.name != 'jangmo-o' && data.name != 'hakamo-o' && data.name != 'kommo-o') {
+        if (pokemon <= 809) {
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] +'.gif';
         } else {
-            if (pokemon <= 809) {
-                pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] +'.gif';
-            }
-            else {
-                pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
-            }
+            pokeSprite.src = 'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/' + data.name +'.gif';
         }
     } else {
-        pk = data.name.split('-')
-        pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
+        if (data.name != 'jangmo-o' && data.name != 'hakamo-o' && data.name != 'kommo-o') {
+            pk = data.name.split('-')
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + pk[0] + pk[1] + '.gif';
+        } else {
+            pokeSprite.src = 'https://projectpokemon.org/images/normal-sprite/' + data.name + '.gif';
+        }
     }
     if (data.types['1']){
         pkTypes.innerHTML = '<div class="' + data.types[0].type.name + '">' + capitalizeFirstLetter(data.types[0].type.name) + '</div><div class="' + data.types[1].type.name + '">' + capitalizeFirstLetter(data.types[1].type.name) + '</div>'
@@ -75,7 +69,7 @@ const renderPokemon = async (pokemon) => {
         pkcry.setAttribute('src', pokecry(searchPk))
     }
     pkcry.load()
-    pkcry.volume = 0.6;
+    pkcry.volume = 0.3;
     pkcry.loop = false
     pkcry.play()
     input.value = ''
